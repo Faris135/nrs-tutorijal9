@@ -3,27 +3,27 @@ services:
     reverseproxy:
         image: reverseproxy
         ports:
-            - 8000:8080
+            - 8080:8080
         restart: always
  
     nginx:
         depends_on:
             - reverseproxy
-        image: nginx:alpine
+        image: reverseproxy:alpine
         restart: always
  
     node:
         depends_on:
             - reverseproxy
-        image: ap1/app:latest
+        image: tut83:latest
         ports:
-            - 8000:8080
+            - 8081:8081
         restart: always
     
     bulletin:
         depends_on:
             - reverseproxy
-        image: ap2/bulletin:latest
+        image: git:latest
         ports:
-            - 8001:8081
+            - 8082:8082
         restart: always
